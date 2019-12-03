@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- <button type="primary" open-type="contact">客服</button>
+  <button bindtap="cloundfn">测试云函数</button> -->
+  <view wx:for="{{books}}">
+    <image class="book-cover" src="{{item.image}}"></image>
+    {{item.title}}
+  </view>
+
+</view>

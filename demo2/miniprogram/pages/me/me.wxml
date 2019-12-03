@@ -1,0 +1,23 @@
+<!--pages/me/me.wxml-->
+<view class='user-container'>
+  <view wx:if="{{userInfo.openid}}">
+    <image class="avator" src="{{userInfo.avatarUrl}}"></image>
+    <view>{{userInfo.nickName}}</view>
+  </view>
+  <view wx:else>
+    <image class="avatar" src="http://image.shengxinjing.cn/rate/unlogin.png"></image>
+    <view>
+      <button size="mini"
+       bindgetuserinfo="onGetUserInfo"
+       open-type="getUserInfo">
+       登陆</button>
+    </view>
+  </view>
+
+  <view>
+    <button wx:if="{{userInfo.openid}}" type='warn' bindtap="scanCodes">添加图书 </button>
+    <button sx:else type="warn"  open-type="contact">
+      客服
+    </button>
+  </view>
+</view>
