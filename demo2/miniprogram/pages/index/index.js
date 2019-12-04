@@ -4,19 +4,61 @@ const app = getApp();
 const db = wx.cloud.database();
 Page({
   data: {
-    books: []
+    books: [],
+    page: 0
   },
-  onLoad() {
-    db.collection('doubanbooks')
-    .orderBy('create_time', 'desc')
-    .get()
+  getList(init) {
+    wx.showLoading()
+    // init: 是不是初始化 初始化直接渲染 不考虑分页
+    if (init) {
+      this.setData({
+        page: 0
+      })
+    }
+    const PAGE = 3;
+    const offset = this.data.page * PAGE;
+    let ret = db.collection('doubanbooks')
+        .orderBy('create_time', 'desc');
+    if (this.data.page > 0) {
+      // 不是第一页
+      ret = ret.skip(offset)
+    }
+    ret = ret.limit(PAGE)
+      .get()
       .then(res => {
         // console.log(res);
-        this.setData({
-          books: res.data
-        })
+        if (init) {
+          this.setData({
+            books: res.data
+          })
+        } else {
+          // 加载下一页
+          this.setData({
+            books: [...this.data.books, ...res.data]
+          })
+        }
+        wx.hideLoading()
       })
-  }
+  },
+  onLoad() {
+    this.getList(true)
+  },
+  onReachBottom() {
+    console.log(11111)
+    this.setData({
+      page: this.data.page + 1
+    }, () => {
+      this.getList();
+    })
+  },
+  onPullDownRefresh() {
+    console.log('xiala')
+    this.getList(true)
+    wx.pageScrollTo({
+      scrollTop: 0,
+    })
+  },
+  
   // cloundfn() {
   //   // 获取云函数
   //   wx.cloud.callFunction(
