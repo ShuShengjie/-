@@ -7,6 +7,8 @@ Page({
    */
   data: {
     userInfo: wx.getStorageSync('userInfo') || {},
+    // 加载动画
+    loadingHidden: true,
   },
   onGetUserInfo(e) {
     console.log(e);
@@ -28,6 +30,9 @@ Page({
   scanCodes() {
     wx.scanCode({
       success: res => {
+        this.setData({
+          loadingHidden: false
+        })
         // 图书的isbn号，去豆瓣获取详情
         this.addBook(res.result)
         console.log(res.result);
@@ -49,8 +54,20 @@ Page({
               title: '添加成功',
               content: `${result.title}添加成功`,
             })
+            this.setData({
+              loadingHidden: true
+            })
           }
           console.log(res);
+        })
+      },
+      fail: ({ result }) => {
+        wx.showModal({
+          title: '添加失败',
+          content: `该书不存在与豆瓣`,
+        })
+        this.setData({
+          loadingHidden: true
         })
       }
     })

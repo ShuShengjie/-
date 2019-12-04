@@ -16,8 +16,11 @@
 
   <view>
     <button wx:if="{{userInfo.openid}}" type='warn' bindtap="scanCodes">添加图书 </button>
-    <button sx:else type="warn"  open-type="contact">
+    <button type="warn"  open-type="contact">
       客服
     </button>
   </view>
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
 </view>
