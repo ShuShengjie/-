@@ -45,7 +45,7 @@ Page({
       name: 'getdouban',
       data: {isbn},
       success: ({result}) => {
-        // console.log(result);
+        console.log(result, 'result');
         db.collection('doubanbooks').add({
           data: result
         }).then(res => {

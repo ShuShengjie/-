@@ -2,9 +2,12 @@
 <view class="container">
   <!-- <button type="primary" open-type="contact">客服</button>
   <button bindtap="cloundfn">测试云函数</button> -->
+  <!-- <navigator url="/pages/details/details" open-type="redirect">2</navigator> -->
   <view class="book-info" wx:for="{{books}}">
-    <image class="book-cover" src="{{item.image}}"></image>
-    {{item.title}}
+    <view data-name="{{item._id}}" bind:tap="toDetail">
+      <image class="book-cover" src="{{item.image}}"></image>
+      {{item.title}}
+    </view>
   </view>
 
 </view>

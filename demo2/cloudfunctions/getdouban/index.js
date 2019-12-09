@@ -39,17 +39,28 @@ async function getDouban(isbn) {
       title: $(v).text(),
     })
   })
+  let comments = [];
+  $('#comments .comment').each((i, v) => {
+    comments.push({
+      author: $(v).find('.comment-info a').text(),
+      content: $(v).find('.comment-content').text(),
+      date: $(v).find('.comment-info span').eq(1).text(),
+    })
+  })
+  console.log(comments, 'comments');
   const ret = {
     create_time: new Date().getTime(),
     title: detailInfo.title,
     rate: detailInfo.rating.value,
     image: detailInfo.cover_url,
     url: detailInfo.url,
+    count: 1,
     summer: $('#link-report .intro').text(),
     tags,
     author,
+    comments,
   }
-  console.log(ret);
+  console.log(ret, 'ret');
   return ret;
 }
 

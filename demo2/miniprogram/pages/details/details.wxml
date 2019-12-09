@@ -1,0 +1,9 @@
+<!--miniprogram/pages/details/details.wxml-->
+<!-- <text>miniprogram/pages/details/details.wxml</text> -->
+<!-- <view>{{book.title}}</view> -->
+<view class="container">
+  <view class="thumb">
+    <image class="back" src="{{book.image}}" mode="aspectFill"></image>
+    <image class="img" src="{{book.image}}" mode="aspectFit"></image>
+  </view>
+</view>

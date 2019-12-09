@@ -58,6 +58,13 @@ Page({
       scrollTop: 0,
     })
   },
+
+  toDetail(e) {
+    console.log(e.currentTarget.dataset);
+    wx.navigateTo({
+      url: '/pages/details/details?id=' + e.currentTarget.dataset.name,
+    })
+  }
   
   // cloundfn() {
   //   // 获取云函数
