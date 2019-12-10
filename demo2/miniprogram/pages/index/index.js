@@ -43,6 +43,7 @@ Page({
   onLoad() {
     this.getList(true)
   },
+  // 监听页面是否滚动到底部
   onReachBottom() {
     console.log(11111)
     this.setData({
@@ -51,6 +52,7 @@ Page({
       this.getList();
     })
   },
+  // 下拉刷新
   onPullDownRefresh() {
     console.log('xiala')
     this.getList(true)
@@ -64,7 +66,11 @@ Page({
     wx.navigateTo({
       url: '/pages/details/details?id=' + e.currentTarget.dataset.name,
     })
-  }
+  },
+  // 监听页面滚动
+  onPageScroll(obj) {
+    console.log(obj)
+  },
   
   // cloundfn() {
   //   // 获取云函数

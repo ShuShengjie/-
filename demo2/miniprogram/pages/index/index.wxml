@@ -3,6 +3,7 @@
   <!-- <button type="primary" open-type="contact">客服</button>
   <button bindtap="cloundfn">测试云函数</button> -->
   <!-- <navigator url="/pages/details/details" open-type="redirect">2</navigator> -->
+  <text selectable>111</text>  
   <view class="book-info" wx:for="{{books}}">
     <view data-name="{{item._id}}" bind:tap="toDetail">
       <image class="book-cover" src="{{item.image}}"></image>
